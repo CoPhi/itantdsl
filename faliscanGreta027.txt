@@ -1,0 +1,91 @@
+TITLE AND EDITOR
+Inscription ItAnt_Faliscan_27
+Greta Mozzato
+
+IDENTIFIERS
+#place: “Civita Castellana”
+#tm: “TM_828943”
+#trad: “Giacomelli_88” “Bakkum_40”
+
+SUMMARY
+funerary inscription
+
+SUPPORT
+“cornice” “stone” 
+#notRe-used #fragmentary (The first portion of the inscription was lost due to the cave in of the cornice)
+
+LAYOUT
+#columns: 1 #writtenLines: 2
+#exec: “cut” #notOpistograph
+
+HAND, SCRIPT, AND DECORATION
+#alphabet: “Faliscan alphabet”
+#punctuation
+
+HISTORY
+#composition: “Falerii Veteres” (“Civita Castellana”) #date: “399-240 BC”
+#finding: #discovered 1950 
+“Falerii Veteres” (“Civita Castellana”) Contrada Celle necropolis
+#observation: #observed #autopsied Gabriella Giacomelli 1963
+
+LANGUAGE
+#l1: “Faliscan” (“Faliscan in Faliscan alphabet”)
+
+TEXT CLASS
+“funerary inscription”
+
+FACSIMILE
+
+INTERPRETATIVE EDITION
+#face_a | #text_direction_r_to_l | #sinistrorse
+
+1 * [ca.3]o c!icio . cicoi : cupa!t! : ifra
+
+#line: 1
+1 ]o = #praenomen
+2 c!icio = #gentilicium
+1; 2 = @p1
+3 . = #pc_word
+4 cicoi = #praenomen 
+4 = @p2
+5 : = #pc_word
+6 cupa!t! = #word
+7 : = #pc_word
+8 ifra = #word
+
+***
+
+TRANSLATION
+]o Ci(n)cio (figlio) di Ci(n)cio giace sotto
+Greta Mozzato
+
+]o Ci(n)cio Ci(n)cio’s (son) lies below
+Greta Mozzato
+***
+
+APPARATUS
+#line: 1
+2 = c!icio «Giacomelli 1963»
+2 = cicio «Bakkum 2009»
+4 = cupa!t! «Giacomelli 1963»
+4 = cupat «Bakkum 2009»
+Greta Mozzato
+***
+
+COMMENTARY
+NOTES
+@27.1.2: «Giacomelli 1963» interpreted #name: “cicio” @27.1.2 as connected with the preceeding -o. Thus, she interpreted ]ocicio as the last part of a masculine gentilicium. «Bakkum 2009» suggested that the first part of the text (]ocicio) could be divided in two words, that is to say that -o could be interpreted as the final letter of a preceding word while #name: “cicio” @27.1.2 could be interpreted as the corresponding form for Latin #l=lat-Latn: “Cincius” 
+@27.1.3: «Giacomelli 1963» interpreted #name: “cicoi” @27.1.3 as the translation of a feminine Etruscan gentilicium #l=ett-Ital: “Cicui/Cicunia”. «Bakkum 2009» thought that it could better be interpreted as a genitive in -oi  of the praenomen Ci(n)cus. Thus, the phrase could be like “...us Cincius son of Cincus”
+@27.1.4: According to what was said previously, «Giacomelli 1963» thought that #word: “cupat” @27.1.4 could be a present indicative third person plural form with the omission of the nasal, while «Bakkum 2009» thought that it could be a third singular form
+Greta Mozzato
+***
+
+ONOMASTICS
+#p1: @p1
+#p2: @p2
+***
+
+BIBLIOGRAPHY
+«Giacomelli 1963» #page: 84
+«Bakkum 2009» #page: 426-427
+*** 

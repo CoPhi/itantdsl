@@ -1,0 +1,86 @@
+TITLE AND EDITOR
+Inscription ItAnt_Faliscan_8
+Greta Mozzato
+
+IDENTIFIERS
+#place: “lost inscription”
+#tm: “TM_828918”
+#trad: “Ve_269_a” “Giacomelli_66_I” “Bakkum_15”
+
+SUMMARY
+funerary inscription
+
+SUPPORT
+“wall” “stone”
+#notRe-used #well-preserved
+
+LAYOUT
+#columns: 1 #writtenLines: 3
+#exec: “painted” #notOpistograph (The inscription was beside a loculus)
+
+HAND, SCRIPT, AND DECORATION
+#alphabet: “Faliscan alphabet”
+#mixed
+
+HISTORY
+#composition: “Falerii Veteres” (“Civita Castellana”) #date: “399-240 BC”
+#finding: #discovered #date: “not after 1908” 
+“Falerii Veteres” (“Civita Castellana”) Colonnette necropolis
+#observation: #not-observed #lost Luca Rigobianco 1908 (The inscription was in a tomb which was lost in 1908)
+
+LANGUAGE
+#l1: “Faliscan” (“Faliscan in Faliscan alphabet”)
+
+TEXT CLASS
+“funerary inscription”
+
+FACSIMILE
+
+INTERPRETATIVE EDITION
+#face_a | #text_direction_r_to_l | #sinistrorse
+
+1* uolta
+2* ne{.}roni
+3* (ca(ui)) (fi(leo))
+
+
+#line: 1 
+1 uolta = #praenomen
+1; 1 = @p1 
+
+#line: 2
+1 ne{.}roni = #gentilicium
+
+#line: 3
+1 (ca(ui)) = #praenomen
+1 = @p2
+2 (fi(leo)) = #word
+
+***
+
+TRANSLATION
+Uolta Neroni fi(glio di) Ga(uio)
+Greta Mozzato
+
+Uolta Neroni Gauio’s son
+Greta Mozzato
+***
+
+COMMENTARY
+NOTES
+@8.2.1: The punctuation used in #name: “ne.roni” @8.2.1 is considered as an error by «Vetter 1953», «Giacomelli 1963», «Bakkum 2009»
+@8.2.1: «Bakkum 2009» considers #name: “neroni” @8.2.1 as an abbreviated nominative
+Greta Mozzato
+***
+
+ONOMASTICS
+#p1: @p1
+#p2: @p2
+***
+
+BIBLIOGRAPHY
+«Thulin 1907» #page: 255-310
+«Vetter 1953» #page: 294
+«Giacomelli 1963» #page: 73
+«Bakkum 2009» #page: 421
+***

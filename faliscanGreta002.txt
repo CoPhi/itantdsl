@@ -1,0 +1,87 @@
+TITLE AND EDITOR
+Inscription ItAnt_Faliscan_2
+Greta Mozzato
+
+IDENTIFIERS
+#place: “Roma”
+#inst: “ETRU Museo Nazionale Etrusco di Villa Giulia”
+#tm: “TM_828914”
+#trad: “Ve_257” “Giacomelli_11_a_-_b” “Bakkum_8_-_9”
+
+SUMMARY
+signature
+
+SUPPORT
+“dolium” “ceramic” #h: 63.8 #dia: 24 (rim) 
+#notRe-used #fragmentary (Some letters at the beginning of the inscription have been lost)
+
+LAYOUT
+#columns: 1 #writtenLines: 2
+#exec: “scratched” #notOpistograph (There are two lines inscribed in the dolium. The first one is on the body of the dolium, the second one is under the handle)
+
+HAND, SCRIPT, AND DECORATION
+#palaeographicNotes: Letters measure 2,5-3,5 cm in height
+#alphabet: “Faliscan alphabet”
+#scriptio_continua
+
+HISTORY
+#composition: “Falerii Veteres” (“Civita Castellana”) #date: “first half of the 6th century BC”
+#finding: #discovered 1912
+“Falerii Veteres” (“Civita Castellana”) Ponte Lepre necropolis
+#observation: #observed Paola Gulinelli 1996
+
+LANGUAGE
+#l1: “Faliscan” (“Faliscan in Faliscan alphabet”)
+
+TEXT CLASS
+“signature”
+
+FACSIMILE
+
+INTERPRETATIVE EDITION
+#face_a | #text_direction_r_to_l | #sinistrorse
+
+1 * ud
+2 * tele.1[ca.2] med fifiked
+
+#line: 2
+1 tele.1[ca.2] = #praenomen
+1 = @p1
+2 med = #word
+3 fifiked = #word
+
+*** 
+
+TRANSLATION
+Tele[ ] mi fece
+Greta Mozzato
+
+Tele[ ] made me
+Greta Mozzato
+***
+APPARATUS
+#line: 2
+1 = tele.1[.1-2] «Gulinelli 1996»
+1 = .1e!.1a! «Vetter 1953»
+1 = .3a «Giacomelli 1963»
+Greta Mozzato
+***
+
+COMMENTARY
+NOTES
+@2.1.1: The first inscription @2.1.1 (ud) is considered as inscription b) in both «Vetter 1953» and «Giacomelli 1963». As suggested by «Gulinelli 1996» ud can be interpreted as an abbreviation or a trademark
+Greta Mozzato
+***
+
+ONOMASTICS
+#p1: @p1
+***
+
+BIBLIOGRAPHY
+«Herbig 1913» #page: 71-87
+«Vetter 1953» #page: 291
+«Giacomelli 1963» #page: 51-52
+«Gulinelli 1996» #page: 225-229
+«Bakkum 2009» #page: 415-416
+***
+

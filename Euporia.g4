@@ -1,7 +1,7 @@
 grammar Euporia;
 options { tokenVocab=EuporiaLexer; }
 
-start: (STAR NL*|titleAndEditor
+start: titleAndEditor
         identifiers
         summary
         support
@@ -9,15 +9,15 @@ start: (STAR NL*|titleAndEditor
         handScriptAndDecoration
         history
         language
-        textClass
+        textClass?
         facsimile
         diplomaticEdition?
         interpretativeEdition
         translation?
         apparatus?
         commentary?
-        onomastics
-        bibliography);
+        onomastics?
+        bibliography;
 
 // value
 value: (WORD|CHARSEQ|NUM|COMMA|LPAR|RPAR)+;
@@ -34,13 +34,13 @@ identifiers: IDENTIFIERS NL
         (institutionInfo
             altInstitutionInfo*)*
         (MS_NAME msName)?
-        (TRISMEGISTOS_ID altIdentifierTM (altIdentifierTM (COMMA altIdentifierTM)*)? NL)?
-        (TRADITIONAL_ID altIdentifierTID (altIdentifierTID (COMMA altIdentifierTID)*)? NL)?
+        (TRISMEGISTOS_ID altIdentifierTM (COMMA? altIdentifierTM)* NL)?
+        (TRADITIONAL_ID altIdentifierTID (COMMA? altIdentifierTID)* NL)?
         NL;
 
 settlement: PLACE_NAME QUOT value QUOT;
-institutionInfo: institution idno? NL;
-altInstitutionInfo: institution idno? NL;
+institutionInfo: institution (NL? IDNO? idno)? NL;
+altInstitutionInfo: institution (NL? IDNO? idno)? NL;
 institution: INSTITUTION QUOT value QUOT;
 idno: (NUM|WORD|CHARSEQ|COMMA);
 msName: (WORD|CHARSEQ|COMMA)+ NL;
@@ -52,7 +52,8 @@ altIdentifierTID: QUOT value QUOT;
 summary: SUMMARY NL
         p NL;
 
-p: (WORD|CHARSEQ|COMMA|NUM|LPAR|RPAR)+ NL;
+p: (WORD|CHARSEQ|COMMA|NUM|LPAR|RPAR|refInP)+ NL;
+refInP: OPEN_REF rfRef (RF_SCLN rfRef)* RF_CLOSE_REF;
 
 //support
 support: SUPPORT NL
@@ -64,12 +65,14 @@ objectShape: LPAR (WORD|CHARSEQ|COMMA|NUM)+ RPAR;
 material: QUOT value QUOT;
 
 dimensions:
-        (H height)? (W width)? (D depthx)? (DIA diameter)?;
+        (H height)? (W width)? (D depthx)? (DIA diameter)? dimensionsNote?;
 
 height: NUM;
 width: NUM;
 depthx: NUM;
 diameter: NUM;
+
+dimensionsNote: LPAR (WORD|CHARSEQ|COMMA|NUM|LPAR|RPAR)+ RPAR;
 
 rsReuse: RS_REUSE;
 condition: CONDITION conditionNote?;
@@ -85,7 +88,7 @@ columns: NUM;
 writtenLines: NUM;
 execution: EXECUTION QUOT value QUOT; 
 opistography: OPISTOGRAPHY;
-layoutNotes: (WORD|CHARSEQ|COMMA|NUM|LPAR|RPAR)+ NL;
+layoutNotes: (WORD|CHARSEQ|COMMA|NUM|LPAR|RPAR)+ NL?;
 allLineDimensions: (H height)? (W width)?;
 singleLineDimensions: (LINE lineNum (EQ lineDimensions)? NL);
 lineNum: NUM;
@@ -100,7 +103,7 @@ handScriptAndDecoration: HAND_SCRIPT_AND_DECORATION NL
         ((noSyllabicPunctuation NL)|(SYLLABIC_PUNCTUATION syllabicPunctuationSimplification syllabicPunctuationApplication NL))?
         (DECO_NOTE decoNote)? NL;
 
-paleographicNotes: (WORD|CHARSEQ|COMMA|NUM|LPAR|RPAR)+;
+paleographicNotes: (WORD|CHARSEQ|COMMA|NUM|LPAR|RPAR|refInP)+;
 singleCharacterDimension: corresp EQ characterDimension;
 corresp: CHARSEQ|COMMA;
 characterDimension: NUM;
@@ -109,20 +112,22 @@ wordDivision: WORD_DIVISION;
 noSyllabicPunctuation: NO_SYLLABIC_PUNCTUATION;
 syllabicPunctuationSimplification: SYLLABIC_PUNCTUATION_SIMPLIFICATION;
 syllabicPunctuationApplication: SYLLABIC_PUNCTUATION_APPLICATION;
-decoNote: (WORD|CHARSEQ|COMMA|NUM|LPAR|RPAR)+ NL;
+decoNote: (WORD|CHARSEQ|COMMA|NUM|LPAR|RPAR|refInP)+ NL;
 
 //history
 history: HISTORY NL
         (COMPOSITION composition origDate? (NL|DT_NL))?
-        FINDING finding findingYear? NL
+        FINDING finding findingYear? findingNote? NL
         provenance detailedProvenance? NL
         (BY findingResp (AND findingResp)* findingYear NL)?
-        (OBSERVATION observation (observationResp observationYear?)? NL)* 
+        (OBSERVATION observation (observationResp observationYear? observationNote?)? NL)* 
         NL;
 composition : ancientPlaceName (LPAR modernPlaceName RPAR)?;
 ancientPlaceName: QUOT value QUOT;
 modernPlaceName: QUOT value QUOT;
 origDate: DT_KEY date (DT_COMMA date)* DT_POP?;
+findingNote: LPAR (WORD|CHARSEQ|COMMA|NUM|LPAR|RPAR)+ RPAR;
+observationNote: LPAR (WORD|CHARSEQ|COMMA|NUM|LPAR|RPAR)+ RPAR;
 
 //date: date_num DT_NUM_SFX DT_CENTURY timeline;
 //date_num: DT_NUM;
@@ -139,7 +144,7 @@ centuryPartRange: centuryPart DT_ALT_SEP centuryPart;
 year: dt_num timeline? circa?;
 yearRange: year DT_RANGE_SEP year;
 yearOpenRange: timeDirection year;
-timeDirection: DT_BEFORE|DT_AFTER;
+timeDirection: DT_BEFORE|DT_AFTER|DT_NOT_BEFORE|DT_NOT_AFTER;
 circa: DT_CIRCA;
 //century (4th century BC)
 //centuryRange (4th/3rd century BC | 1st century BC/1st century AD)
@@ -153,9 +158,11 @@ finding: FINDING_TYPE;
 provenance: PLACE_NAME|PLACE_NAME_ANCIENT|ancientPlaceName LPAR modernPlaceName RPAR;
 detailedProvenance: (CHARSEQ|COMMA|WORD|NUM|LPAR|RPAR)+;
 findingResp: WORD+;
-findingYear: NUM;
-observationYear: NUM;
-observation: OBSERVATION_TYPE;
+findingYear: NUM|DT_KEY date DT_POP;
+observationYear: NUM|DT_KEY date DT_POP;
+observation: observationType observationSubtype?;
+observationType: OBSERVATION_TYPE;
+observationSubtype: OBSERVATION_SUBTYPE;
 observationResp: WORD+;
 
 //language
@@ -222,7 +229,9 @@ ieTextLine: ieLang? ieLineNum ieLineText IE_NL;
 ieLang: IE_LANG;
 ieLineNum: IE_NUM;
 ieLineText: ieToken+;
-ieToken: (IE_CHARSEQ|IE_CLN|IE_SCLN|IE_DOT|IE_COMMA|IE_STAR);
+//ieToken: IE_STAR|(IE_CHARSEQ|IE_CLN|IE_SCLN|IE_DOT|IE_NUM|IE_COMMA)+;
+ieToken: IE_STAR|IE_CHARSEQ|IE_CLN|IE_SCLN|IE_DOT|IE_NUM|IE_COMMA;
+//ieToken: IE_STAR|IE_CHARSEQ|IE_CLN|IE_SCLN|IE_NUM|IE_COMMA;
 
 ieApparatus: ieLineBlock+;
 
@@ -247,14 +256,14 @@ trPersName: TR_WORD+;
 apparatus: APPARATUS AP_NL+ apLineBlock+ apPersName (AP_SCLN apPersName)* AP_3_STAR NL*;
 apLineBlock: apLineHeader apItemDesc+ AP_NL*;
 apLineHeader: AP_LINE apLineNum AP_NL;
-apItemDesc: (apTokenNum|apLineTokenNum|apTokenSet) apToken? AP_EQL apItemValue (apRef (AP_COMMA apRef)*)? AP_NL;
+apItemDesc: (apTokenNum|apLineTokenNum|apTokenSet) apToken? AP_EQL apItemValue (apRef (AP_COMMA? apRef)*)? AP_NL;
 apLineNum: AP_NUM;
 apTokenNum: AP_NUM;
 apLineTokenNum: apLineNum AP_DOT apTokenNum; 
 apTokenSet: (apTokenNum|apLineTokenNum) (AP_SCLN (apTokenNum|apLineTokenNum))+; 
 apItemValue: (AP_CHARSEQ|AP_CLN|AP_SCLN|AP_DOT|AP_COMMA|AP_STAR);
-apToken: (AP_CHARSEQ|AP_CLN|AP_SCLN|AP_DOT|AP_COMMA|AP_STAR);
-apRef: AP_OPEN_REF rfRef (RF_SCLN rfRef)* RF_CLOSE_REF;
+apToken: (AP_STAR|AP_CHARSEQ);
+apRef: AP_OPEN_REF rfRef (RF_SCLN? rfRef)* RF_CLOSE_REF;
 apPersName: AP_CHARSEQ+;
 
 //reference ****
@@ -269,9 +278,10 @@ rfPageRange: rfPage RF_DASH rfPage;
 //commentary
 commentary: COMMENTARY NL ntNote;
 ntNote: NOTES NT_NL+ note+ ntPersName (NT_SCLN ntPersName)*  NT_NL* NT_3_STAR NL*;
-note: ntTarget ntP  NT_NL; //da buttare via!!!
+note: ntTarget NT_CLN ntP  NT_NL; //da buttare via!!!
 ntTarget: NT_AT ntNum (NT_DOT ntNum)*;
-ntP: (ntRs|NT_HASH|NT_NUM|NT_WORD|NT_DOT|NT_CLN|NT_SCLN|NT_COMMA|NT_EQL|NT_STAR|NT_QMARK|NT_LPAR|NT_RPAR|NT_QUOT|ntRef|NT_LBRAK|NT_RBRAK)+;
+ntInternalRef: NT_AT ntNum (NT_DOT ntNum)*;
+ntP: (ntRs|ntInternalRef|NT_HASH|NT_NUM|NT_WORD|NT_DOT|NT_CLN|NT_SCLN|NT_COMMA|NT_EQL|NT_STAR|NT_QMARK|NT_LPAR|NT_RPAR|NT_QUOT|ntRef|NT_LBRAK|NT_RBRAK)+;
 ntRs: (ntRsType NT_CLN ntRsText ntRsCorresp)| (ntRsLang NT_CLN ntRsText);
 ntRsType: NT_NAME|NT_W|NT_PHR|NT_S;
 ntRsLang: NT_LANG NT_EQL ntLang;

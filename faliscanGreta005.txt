@@ -1,0 +1,96 @@
+TITLE AND EDITOR
+Inscription ItAnt_Faliscan_5
+Greta Mozzato
+
+IDENTIFIERS
+#place: “Civita Castellana”
+#tm: “TM_828916”
+#trad: “Ve_271_a” “Giacomelli_6_II_a_-_b” “Bakkum_12”
+
+SUMMARY
+funerary inscription
+
+SUPPORT
+“wall” “tuff”
+#notRe-used #fragmentary
+
+LAYOUT
+#columns: 1 #writtenLines: 2 
+#exec: “cut” #notOpistograph (The first line of the inscription turns around a corner in the rock-face after paui-)
+
+HAND, SCRIPT, AND DECORATION
+#palaeographicNotes: Letters measure c. 8 cm in height
+#alphabet: “Faliscan alphabet”
+#punctuation
+
+HISTORY
+#composition: “Falerii Veteres” (“Civita Castellana”) #date: “399-240 BC”
+#finding: #discovered 1890
+“Falerii Veteres” (“Civita Castellana”) Colonnette necropolis
+#observation: #observed #autopsied Gabriella Giacomelli 1963
+
+LANGUAGE
+#l1: “Faliscan” (“Faliscan in Faliscan alphabet”)
+
+TEXT CLASS
+“funerary inscription”
+
+FACSIMILE
+
+INTERPRETATIVE EDITION
+#face_a  |  #text_direction_r_to_l  |  #sinistrorse
+
+1 * caulo : pauiceo :
+2 * l[oc]i!es : cela
+
+#line: 1
+1 caulo = #praenomen
+2 : = #pc_word
+3 pauiceo = #gentilicium
+1; 3; 2.1 = @p1 
+4 : = #pc_word
+
+#line: 2
+1 l[oc]i!es = #patronimic
+2 : = #pc_word
+3 cela = #word
+
+***
+
+TRANSLATION
+La tomba di Gaulo Pauicio, (figlio di) Lucio
+Greta Mozzato
+
+Gaulo Pauicio’s tomb, (son of) Lucio
+Greta Mozzato
+***
+
+APPARATUS
+#line: 1
+1 = caulo «Vetter 1953» «Giacomelli 1963»
+
+#line: 2 
+1 = l[oc]i!es «Giacomelli 1963»
+1 = l!--i!e!s «Vetter 1953»
+1 = l![oc]i!es «Bakkum 2009»
+Greta Mozzato
+***
+
+COMMENTARY
+NOTES
+@5: Both «Vetter 1953» and «Giacomelli 1963» adopted the suggestion proposed by «Thulin 1907». He suggested that line 1 and line 2 have to be considered as two different inscriptions, referring to two different burials. Thus the tomb was used in different stages for the burial of more than three deceased. To solve the problem of the syntax of this inscription, «Bakkum 2009» suggested that the inscriptions (Bakkum 11 and 12) could be divided into two (respectively ‘cauio pauiceo’ and ‘uolti teti locies cela’), but this suggestion does not consider the epigraphical differences between the two inscriptions
+Greta Mozzato
+***
+
+ONOMASTICS
+#p1: @p1
+***
+
+BIBLIOGRAPHY
+«Thulin 1907» #page: 255-310
+«Vetter 1953» #page: 295
+«Giacomelli 1963» #page: 74
+«Bakkum 2009» #page: 418-419
+***
+
+

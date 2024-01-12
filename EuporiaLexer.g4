@@ -25,6 +25,7 @@ XML: '<!--'.+?'-->';
 URL: 'http''s'?'://'('www.')?[-a-zA-Z0-9@:%._+~#=]+'.'[a-zA-Z0-9()][-a-zA-Z0-9()@:%_+.~#?&/=]*;
 
 EDITION_IDNO: 'ItAnt_'('Faliscan'|'Oscan'|'Venetic'|'CisalpineCeltic')'_'[0-9]+;
+DT_KEY: ('#date:“'|'#date: “'|'#date:"'|'#date: "') -> pushMode(DT);
 MS_NAME: '#msName:';
 H: 'h:'|'#h'':'?;
 W: 'w:'|'#w'':'?;
@@ -32,18 +33,19 @@ D: 'd:'|'#d'':'?;
 DIA: 'dia:'|'#dia'':'?;
 V_BAR: '|';
 B_BAR: '¦';
-LPAR: '(';
-RPAR: ')'[.,;:!?]?;
+LPAR: '('|'[';
+RPAR: (']'|')')[.,;:!?]?;
 COMMA: ',';
-QUOT: '"';
+QUOT: '"'|'“'|'”';
+OPEN_REF: '«' ->pushMode(RF);
 AND: '&';
-STAR: '*';
 NUM: [0-9]+('.'[0-9]+)*;
-WORD: [A-Za-zàáâäèéêëìíïòóôöùúüýç\u002D’]+[.,;:!?]?;
-CHARSEQ: [A-Za-zàáâäèéêëìíïòóôöùúüýç.0-9\u002D‘_/<\u005c>:;,]+;
+WORD: [‘]?[A-Za-zàáâäèéêëìíïòóôöùúüýçōē\u002D’]+[.,;:!?]?;
+CHARSEQ: [A-Za-zàáâäèéêëìíïòóôöùúüýçōē.0-9\u002D‘_/<\u005c>:;,]+;
 PLACE_NAME: '#place:';
 PLACE_NAME_ANCIENT: '#ancientPlace:'|'#ancPlace:';
 INSTITUTION: '#institution:'|'#inst:';
+IDNO: '#idno'|'#idno:';
 TRISMEGISTOS_ID: '#tm:';
 TRADITIONAL_ID: '#tradId:'|'#trad:';
 OBJECT_TYPE: '#object:'|'#obj:';
@@ -66,7 +68,7 @@ ALL_LINES: '#allLines';
 PALAEOGRAPHIC_NOTES: '#palaeographicNotes:';
 CHARACTER_DIMENSION: '#characterDimension:';
 ALPHABET: '#alphabet:'|'#alph:';
-WORD_DIVISION: '#scriptioContinua'|'#punctuation'|'#blankSpaces'|'#mixed';
+WORD_DIVISION: '#scriptio_continua'|'#scriptioContinua'|'#punctuation'|'#blankSpaces'|'#mixed';
 NO_SYLLABIC_PUNCTUATION: '#noSyllabicPunctuation';
 SYLLABIC_PUNCTUATION: '#syllabicPunctuation:';
 SYLLABIC_PUNCTUATION_SIMPLIFICATION: '#simplified'|'#unsimplified';
@@ -82,8 +84,9 @@ FINDING: '#finding:';
 FINDING_TYPE: '#discovered'|'#re-discovered'|'#firstRecorded';
 BY: '#by:';
 OBSERVATION: '#observation:';
-OBSERVATION_TYPE: '#seen'|'#autopsied'|'#lost'|'#stolen'|'#destroyed'|'#observed';
-DT_KEY: ('#date:"'|'#date: "') -> pushMode(DT);
+OBSERVATION_TYPE: '#observed'|'#not-observed'|'#found'|'#transferred';
+OBSERVATION_SUBTYPE: '#seen'|'#autopsied'|'#lost'|'#stolen'|'#destroyed'; 
+
 EQ: '=';
 
 NL: '\n';
@@ -100,12 +103,14 @@ DT_PART: 'first half of the'|'second half of the'|'middle of the'|'end of the'|'
 DT_RANGE_SEP: '-';
 DT_CIRCA: 'circa';
 DT_AFTER: 'after';
+DT_NOT_AFTER: 'not after';
 DT_BEFORE: 'before';
+DT_NOT_BEFORE: 'not before';
 DT_COMMA: ',';
 
 DT_WS: ' '->skip;
 DT_NL: '"\n' -> popMode;
-DT_POP: '"' -> popMode;
+DT_POP: ('”'|'"') -> popMode;
 
 
 mode DE;
@@ -117,14 +122,14 @@ DE_MACRO: '@'[a-z0-9_]+;
 DE_HASHTAG: '#'[a-z_0-9]+;
 DE_BAR: '|';
 DE_NUM: [0-9]+;
-DE_DOT: '.';
+DE_DOT: '.'|'!';
 DE_CLN: ':';
 DE_SCLN: ';';
 DE_COMMA: ',';
 DE_EQL: '=';
 DE_STAR: '*';
 DE_3_EQL: '===';
-DE_CHARSEQ: ([0-9A-Za-zàáâäèéêëìíïòóôöùúüýç\u002D‘_/—()\u0323!]|'['|']')+;
+DE_CHARSEQ: ([0-9A-Za-zàáâäèéêëìíïòóôöùúüýçōē\u002D‘_/—()\u0323!]|'['|']')+;
 DE_3_STAR: '\n'?'***\n\n\n' -> popMode;
 
 mode IE;
@@ -135,15 +140,17 @@ IE_LINE: '#line:';
 IE_MACRO: '@'[a-z0-9_]+;
 IE_HASHTAG: '#'[a-z_0-9]+;
 IE_BAR: '|';
+
 IE_NUM: [0-9]+;
 IE_DOT: '.';
 IE_CLN: ':';
 IE_SCLN: ';';
 IE_COMMA: ',';
+
 IE_EQL: '=';
 IE_STAR: '*';
 IE_3_EQL: '===';
-IE_CHARSEQ: ([0-9A-Za-zàáâäèéêëìíïòóôöùúüýç\u002D‘_/—()\u0323!]|'['|']')+;
+IE_CHARSEQ: ('[''ca'?'.'([0-9]+('-'[0-9]+)?|'?')']'|[.][0-9]?[{}A-Za-zàáâäèéêëìíïòóôöùúüýçōē\u002D‘_/—()\u0323!][0-9]?|[{}A-Za-zàáâäèéêëìíïòóôöùúüýç\u002D‘_/—()\u0323!][0-9]?[.]?[0-9]?|'['|']'|'?')+;
 IE_3_STAR: '\n'?'***' -> popMode;
 
 
@@ -151,7 +158,7 @@ mode TR;
 TR_NL: '\n';
 TR_WS: ' '->skip;
 TR_NUM: [0-9]+;
-TR_WORD: [A-Za-zàáâäèéêëìíïòóôöùúüýç\u002D’_/—+]+;
+TR_WORD: [A-Za-zàáâäèéêëìíïòóôöùúüýçōē\u002D’_/—+]+;
 TR_DOT: '.';
 TR_CLN: ':';
 TR_SCLN: ';';
@@ -180,7 +187,7 @@ AP_COMMA: ',';
 AP_EQL: '=';
 AP_STAR: '*';
 AP_3_EQL: '===';
-AP_CHARSEQ: ([0-9A-Za-zàáâäèéêëìíïòóôöùúüýç\u002D‘_/—()\u0323!]|'['|']')+;
+AP_CHARSEQ: ([0-9A-Za-zàáâäèéêëìíïòóôöùúüýçōē\u002D‘_/—()\u0323!]|AP_DOT|AP_CLN|AP_SCLN|AP_COMMA|'['|']')+;
 AP_3_STAR: '\n'?'***' -> popMode;
 
 
@@ -196,7 +203,7 @@ NT_S: '#s';
 NT_LANG: '#lang'|'#l';
 NT_HASH: '#';
 NT_NUM: [0-9]+;
-NT_WORD: [A-Za-zàáâäèéêëìíïòóôöùúüýç\u002D’_/—\u00AF+]+;
+NT_WORD: [‘]?[A-Za-zàáâäèéêëìíïòóôöùúüýōēç\u002D’_/—\u00AF+]+;
 NT_DOT: '.';
 NT_CLN: ':';
 NT_SCLN: ';';
@@ -206,7 +213,7 @@ NT_STAR: '*';
 NT_QMARK: '?';
 NT_LPAR: '(';
 NT_RPAR: ')';
-NT_QUOT: '"';
+NT_QUOT:  '"'|'“'|'”';
 NT_OPEN_REF: '«' ->pushMode(RF);
 NT_LBRAK: '[';
 NT_RBRAK: ']';
